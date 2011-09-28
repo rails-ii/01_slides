@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2011 Bodil Stokke <bodil@bodil.tv>
+
+
+  License and copyright notice for the HTML5Rocks slides:
+  
+  Copyright 2011 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Chrome DevRel Team (chrome-devrel@googlegroups.com)
+                 Alex Russell (slightlyoff@chromium.org)
+                 Brad Neuberg
+-->
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" />
+    <title>Ruby on Rails - Andrzej Krzywda</title>
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans|Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+    <link href="css/prettify.css" rel="stylesheet"/>
+    <link href="css/moon.css" class="theme" rel="stylesheet" />
+    <link href="css/sand.css" class="theme" rel="stylesheet" />
+    <link href="css/sea_wave.css" class="theme" rel="stylesheet" />
+    <link href="css/default.css" class="theme" rel="stylesheet" media="screen" />
+    <link href="css/editor.css" rel="stylesheet">
+    <style>
+      .slide li, .slide p {
+        font-size: 28px;
+        line-height: 1em;
+      }
+      .slide li {
+        list-style-type: disc;
+      }
+      .slide pre {
+        margin: 0.5em 0;
+        font-family: 'Droid Sans Mono';
+        font-size: 20px;
+      }
+
+      .slide code {
+        font-family: 'Droid Sans Mono';
+        font-size: 90%;
+      }
+
+      img.drop {
+        box-shadow: 8px 8px 16px #888;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+        font-size: 96px;
+        font-weight: bold;
+      }
+      h2 {
+        color: #181818;
+        font-size: 56px;
+        letter-spacing: -1px;
+      }
+      h3 {
+        color: black;
+        font-size: 40px;
+        letter-spacing: -1px;
+        margin: 0;
+      }
+
+      .kitteh {
+        font-family: 'Impact';
+        font-weight: normal;
+      }
+
+      div.editor, pre.editor-jsbuffer, pre.editor-console {
+        font-size: 18px;
+      }
+
+      div.editor {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -450px;
+        width: 462px;
+        margin-top: -324px;
+        height: 524px;
+        visibility: hidden;
+      }
+
+      div.editor.visible {
+        visibility: visible !important;
+      }
+
+      div.editor-content {
+        display: none;
+      }
+
+      pre.editor-jsbuffer {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: 22px;
+        width: 392px;
+        margin-top: -340px;
+        height: 518px;
+        background-color: rgba(255, 204, 0, 0.05);
+        border: 2px solid rgba(255, 204, 0, 0.3);
+        padding: 10px 10px;
+        border-radius: 10px;
+        overflow: auto;
+      }
+
+      pre.editor-console {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -440px;
+        width: 855px;
+        margin-top: 210px;
+        height: 106px;
+        background-color: rgba(0, 0, 0, 0.05);
+        border: 2px solid rgba(0, 0, 0, 0.1);
+        padding: 10px 10px;
+        border-radius: 10px;
+        overflow: auto;
+        word-wrap: break-word;
+      }
+
+      pre.editor-console span.input {
+        color: #666;
+      }
+
+      pre.editor-console span.error {
+        color: red;
+      }
+
+      .hide-jsbuffer .editor-jsbuffer {
+        visibility: hidden;
+      }
+      .hide-jsbuffer .editor {
+        width: 886px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="presentation-counter">Loading...</div>
+    
+    <div class="presentation">
+      <div class="slides">
+        <div class="slide" id="landing-slide">
+          <style>
+            #title-slide h1 {
+              color: #594E42;
+            }
+            #title-slide h2 {
+              color: black;
+              font-size: 48px;
+              margin-top: -5px;
+            }
+            #title-slide p {
+              line-height: 1em;
+            }
+          </style>
+          <section class="middle">
+          <hgroup>
+          <h1>Ruby on Rails</h1>
+          <p style="margin-top: 0.3em"><img class="drop" src="media/cat_looking_at_coffee.jpg"/></p>
+          </hgroup>
+          
+          <p style="margin: 0; color: black">Andrzej Krzywda</p>
+          </section>
+        </div>
+
+
+
+
+        <div class="slide" id="how-many-of-you">
+          <section>
+            <h2>How many of you...?</h2>
+            <ul data-build>
+              <li>used Rails?</li>
+              <li>created a web app with db?</li>
+              <li>created a website?</li>
+              <li>know ruby?</li>
+            </ul>
+          </section>
+        </div>
+
+
+        <div class="slide" id="rails">
+          <section>
+            <h2>Rails is...</h2>
+            <ul data-build>
+              <li>Ruby</li>
+              <li>MVC</li>
+              <li>Model2 - http://andrzejonsoftware.blogspot.com/2011/09/rails-is-not-mvc.html</li>
+              <li>DB-based</li>
+              <li>great community</li>
+            </ul>
+          </section>
+        </div>
+
+
+        <div class="slide" id="rails-history">
+          <section>
+            <h2>History</h2>
+            <ul data-build>
+              <li>2004 - DHH</li>
+              <li>Rails 1, 2, 3, 3.1</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="me">
+          <section>
+            <h2>me</h2>
+            <ul data-build>
+              <li>proudly graduated from ii.uwr</li>
+              <li>Arkency - Rails experts, since 2007</li>
+              <li>GameBoxed.com</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="course">
+          <section>
+            <h2>About the course...</h2>
+            <ul data-build>
+              <li>15 lectures</li>
+              <li>IRC/Skype</li>
+              <li>lab, remote: I'm available for help at any time</li>
+              <li>Github</li>
+              <li>Heroku</li>
+              <li>Mysql</li>
+              <li>rvm</li>
+              <li>CoffeeScript - JS</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="practicing">
+          <section>
+            <h2>We're going to...</h2>
+            <ul data-build>
+              <li>build a shop</li>
+              <li>build a FB app</li>
+              <li>social features</li>
+              <li>API for mobiles</li>
+            </ul>
+          </section>
+        </div>
+
+        <div class="slide" id="one-year-ago">
+          <section>
+            <h2>Last year...</h2>
+            <ul data-build>
+              <li>About 30 students</li>
+              <li>20 finished with at least 3</li>
+              <li>Cool big projects</li>
+              <li>About 8 students found Rails jobs, AFAIK</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="how-to-pass">
+          <section>
+            <h2>Pass rules...</h2>
+            <ul data-build>
+              <li>Small exercices (about 10)</li>
+              <li>Strict deadlines - 1 week</li>
+              <li>Big project</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="program">
+          <section>
+            <h2>Program</h2>
+            <ul data-build>
+              <li>http://andrzejonsoftware.blogspot.com/2011/05/teaching-rails-at-university-of-wrocaw.html</li>
+              <li>Ruby, Rails, CoffeeScript</li>
+              <li>Facts and opinions</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="technologies">
+          <section>
+            <h2>Technologies</h2>
+            <ul data-build>
+              <li>Ruby, OOP, DCI, MVC, REST, CS, Mustache</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="testing">
+          <section>
+            <h2>Testing</h2>
+            <ul data-build>
+              <li>Cucumber, Capybara</li>
+              <li>Selenium</li>
+              <li>BBQ - object-oriented acceptance testing</li>
+              <li>rspec, qunit, phantomjs</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="wroclaw-ruby">
+          <section>
+            <h2>Wrocław and Ruby</h2>
+            <ul data-build>
+              <li>The strongest Polish Ruby city</li>
+              <li>DRUG meetups, every month</li>
+              <li>DRUG dinners</li>
+              <li>wroclove.rb - March 2011</li>
+              <li>RuPy</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="exercise-1">
+          <section>
+            <h2>Exercise</h2>
+            <ul data-build>
+              <li>Hello world on Heroku</li>
+            </ul>
+          </section>
+        </div>
+        <div class="slide" id="outro-slide">
+          <style>
+            #outro-slide h2 {
+              color: black;
+              letter-spacing: -1px;
+              font-size: 64px;
+            }
+            p.resource-link {
+              font-size: 36px;
+              line-height: 1.15em;
+              margin: 0.8em 0;
+            }
+            p.resource-link a {
+              color: blue;
+              text-decoration: underline;
+              border: none;
+            }
+            span.bodil {
+              font-weight: bold;
+              font-size: 48px;
+              letter-spacing: -2px;
+            }
+          </style>
+          <section class="middle">
+            <h2>Thank you for listening!</h2>
+            <p class="resource-link"><span class="bodil">Andrzej Krzywda</span><br>
+              <a href="http://twitter.com/andrzejkrzywda">@andrzejkrzywda</a>
+            </p>
+          </section>
+        </div>
+
+      </div> <!-- slides -->
+      <style>
+      #speaker-note {
+        position:absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 50%;
+        z-index: 50;
+        background-color: rgba(255, 255, 255, 0.95);
+        overflow: auto;
+        padding: 2px 20px;
+        -webkit-transition: top 0.5s ease-in-out;
+        -moz-transition: top 0.5s ease-in-out;
+        -o-transition: top 0.5s ease-in-out;
+        transition: top 0.5s ease-in-out;
+      }
+      #speaker-note.invisible {
+        top: 101%;
+      }
+      </style>
+      <div id="speaker-note" class="invisible" style="display: none;">
+      </div> <!-- speaker note -->
+    </div> <!-- presentation -->
+
+    <!--[if lt IE 9]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({ mode: "overlay" });</script>
+    <![endif]-->
+
+    <script src="js/coffee-script.js"></script>
+    <script src="js/ace/ace.js"></script>
+    <script src="js/ace/mode-coffee.js"></script>
+    <script src="js/ace/theme-textmate.js"></script>
+    <script src="js/prettify.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/lang-sql.js"></script>
+    <script>prettyPrint();</script>
+  </body>
+</html>
